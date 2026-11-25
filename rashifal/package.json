@@ -1,0 +1,9 @@
+{
+  "name": "chito-khabar-rashifal",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily rashifal image for the छिटो खबर Facebook page",
+  "dependencies": {
+    "@fontsource/mukta": "^5.3.0"
+  }
+}
