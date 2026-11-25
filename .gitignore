@@ -1,3 +1,5 @@
 node_modules/
 _page.html
 __pycache__/
+_reel.html
+reels/*.tmp
