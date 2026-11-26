@@ -1,13 +1,41 @@
 {
  "note": "Federation of Nepal Gold & Silver Dealers' Association daily rates, NPR per tola. Hallmark (fine) gold. null = not recorded.",
  "rates": {
-  "2026-11-17": {"gold": 267200, "silver": 3490},
-  "2026-11-18": {"gold": 260900, "silver": 3380},
-  "2026-11-19": {"gold": 257600, "silver": 3335},
-  "2026-11-20": {"gold": 245400, "silver": null},
-  "2026-11-22": {"gold": 242600, "silver": 3065},
-  "2026-11-23": {"gold": 247400, "silver": 3110},
-  "2026-11-24": {"gold": 247900, "silver": 3145},
-  "2026-11-25": {"gold": 241400, "silver": 3040}
+  "2026-11-17": {
+   "gold": 267200,
+   "silver": 3490
+  },
+  "2026-11-18": {
+   "gold": 260900,
+   "silver": 3380
+  },
+  "2026-11-19": {
+   "gold": 257600,
+   "silver": 3335
+  },
+  "2026-11-20": {
+   "gold": 245400,
+   "silver": null
+  },
+  "2026-11-22": {
+   "gold": 242600,
+   "silver": 3065
+  },
+  "2026-11-23": {
+   "gold": 247400,
+   "silver": 3110
+  },
+  "2026-11-24": {
+   "gold": 247900,
+   "silver": 3145
+  },
+  "2026-11-25": {
+   "gold": 241400,
+   "silver": 3040
+  },
+  "2026-11-26": {
+   "gold": 242800,
+   "silver": 3075
+  }
  }
 }
