@@ -14,7 +14,7 @@ raw.githubusercontent.com link. Keep nothing private in it.
 - `rashifal/captions/YYYY-MM-DD.txt` — the post caption
 - `rashifal/render.py` — draws the image (same design as the canvas template)
 - `rashifal/daily.py` — `info` gives the day's Nepali date and paths; `build` validates, renders and writes the caption
-- `rashifal/reel.py` — makes the day's silent 9:16 reel (`reels/YYYY-MM-DD.mp4`, ~31 s) from the built content file; the page owner adds music in Meta when posting it by hand. Reels older than 30 days are deleted to keep the repo small.
+- `rashifal/reel.py` — makes the day's silent 9:16 reel (`reels/YYYY-MM-DD.mp4`, ~31 s) from the built content file; the page owner adds music in Meta when posting it by hand. It also writes `reels/YYYY-MM-DD.txt`, a caption to copy and paste with the reel (`python3 reel.py --caption-only content/DAY.json reels/DAY.mp4` makes just the caption). Reels and their captions older than 30 days are deleted to keep the repo small.
 
 ## Run by hand
 

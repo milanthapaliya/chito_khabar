@@ -85,10 +85,31 @@ window.renderAt=function(t){{
 </script></body></html>"""
 
 
+def reel_caption(c):
+    """Copy-paste caption for posting the reel by hand."""
+    from daily import EMOJI, ORDER
+    lines = [f"🔮 आजको राशिफल | {c['weekday']}, {c['date']}", "",
+             "रील हेर्नुहोस् र आफ्नो राशिको दिन कस्तो छ थाहा पाउनुहोस् 👇", ""]
+    for e, n in zip(EMOJI, ORDER):
+        lines.append(f"{e} {n}: {c['signs'][n]}")
+    lines += ["", "👇 तपाईंको राशि कुन हो? कमेन्टमा लेख्नुहोस् र साथीलाई पनि सेयर गर्नुहोस्।", "",
+              "📌 दिनहुँ राशिफलका लागि छिटो खबर लाई फलो गर्नुहोस्।", "",
+              "#राशिफल #आजकोराशिफल #छिटोखबर #नेपाल #reels #rashifal"]
+    return "\n".join(lines)
+
+
+def write_caption(c, out):
+    cap = pathlib.Path(out).with_suffix(".txt")
+    cap.parent.mkdir(parents=True, exist_ok=True)
+    cap.write_text(reel_caption(c), encoding="utf-8")
+    print("caption", cap)
+
+
 def main(src, out):
     c = json.loads(pathlib.Path(src).read_text(encoding="utf-8"))
     if not c.get("weekday") or not c.get("date"):
         sys.exit("run daily.py build first (weekday/date missing)")
+    write_caption(c, out)
     total = INTRO + 12 * PER + OUTRO
     n = round(total * FPS)
     tmp = pathlib.Path(tempfile.mkdtemp(prefix="reel_"))
@@ -121,4 +142,10 @@ def main(src, out):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    # python3 reel.py content/DAY.json reels/DAY.mp4            -> reel + reels/DAY.txt caption
+    # python3 reel.py --caption-only content/DAY.json reels/DAY.mp4 -> only the caption
+    if sys.argv[1] == "--caption-only":
+        c = json.loads(pathlib.Path(sys.argv[2]).read_text(encoding="utf-8"))
+        write_caption(c, sys.argv[3])
+    else:
+        main(sys.argv[1], sys.argv[2])
