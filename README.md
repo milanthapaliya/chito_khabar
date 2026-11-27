@@ -49,5 +49,5 @@ Fonts come from `rashifal/node_modules` (run `npm install` in `rashifal/`).
 - `nepse/nepse.py` — `info` (date, trading day?) and `build DAY` (validates the data, renders the poster and caption)
 - `nepse/images/`, `nepse/captions/` — the day's poster and caption
 
-NEPSE trades Sunday to Thursday, 11:00–15:00. Figures come from ShareSansar's market page and are
+NEPSE trades Monday to Friday, 11:00–15:00, except public holidays. Figures come from ShareSansar's market page and are
 cross-checked against Merolagani's top gainers/losers. Fonts: Inter from `rashifal/node_modules`.

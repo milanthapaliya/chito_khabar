@@ -1,7 +1,7 @@
 """Daily NEPSE update post for छिटो खबर (English poster).
 
   python3 nepse.py info [YYYY-MM-DD]
-      Nepal date info and paths. NEPSE trades Sunday to Thursday.
+      Nepal date info and paths. NEPSE trades Monday to Friday (except public holidays).
   python3 nepse.py build YYYY-MM-DD
       Validates data/YYYY-MM-DD.json, renders images/YYYY-MM-DD.png
       and writes captions/YYYY-MM-DD.txt.
@@ -34,7 +34,7 @@ def info(day=None):
     b = nd.date.from_datetime_date(g)
     return {
         "gregorian": g.isoformat(),
-        "trading_day": g.weekday() in (6, 0, 1, 2, 3),  # Sun-Thu
+        "trading_day": g.weekday() in (0, 1, 2, 3, 4),  # Mon-Fri
         "date_en": g.strftime("%a, %d %b %Y").replace(" 0", " "),
         "date_bs": f"{BS_MONTHS[b.month-1]} {b.day}, {b.year}",
         "date_ne": f"{NE_WEEKDAYS[g.weekday()]}, {NE_MONTHS[b.month-1]} {str(b.day).translate(NE_DIGITS)}, {str(b.year).translate(NE_DIGITS)}",
