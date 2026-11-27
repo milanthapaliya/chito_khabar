@@ -62,6 +62,29 @@ def validate(d):
     if errs: sys.exit("data problems: " + "; ".join(errs))
 
 
+def group_np(n, nd_=0):
+    """Nepali/Indian digit grouping: 14710298 -> 1,47,10,298"""
+    neg = n < 0; n = abs(n)
+    whole, _, frac = f"{n:.{nd_}f}".partition(".")
+    if len(whole) > 3:
+        head, tail = whole[:-3], whole[-3:]
+        parts = []
+        while len(head) > 2:
+            parts.insert(0, head[-2:]); head = head[:-2]
+        if head: parts.insert(0, head)
+        whole = ",".join(parts + [tail])
+    return ("-" if neg else "") + whole + (("." + frac) if frac else "")
+
+
+def big_np(n, ne=False):
+    """Arba / Crore / Lakh, e.g. 5489584101.95 -> '5.49 Arba'"""
+    units = [(1e9, "Arba", "अर्ब"), (1e7, "Crore", "करोड"), (1e5, "Lakh", "लाख")]
+    for v, en, np_ in units:
+        if abs(n) >= v:
+            return f"{n / v:,.2f} {np_ if ne else en}"
+    return group_np(n)
+
+
 def col(v): return UP if v > 0 else (DOWN if v < 0 else FLAT)
 def sign(v, nd_=2): return ("+" if v > 0 else ("−" if v < 0 else "")) + f"{abs(v):,.{nd_}f}"
 def arrow(v): return "▲" if v > 0 else ("▼" if v < 0 else "■")
@@ -77,7 +100,7 @@ def mover_rows(items):
     return "".join(
         f'<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-top:1px solid #ECE7DE">'
         f'<span style="font-weight:700;font-size:27px">{x["symbol"]}</span>'
-        f'<span style="display:flex;gap:18px;align-items:baseline"><span style="font-size:22px;color:#5B5F66;font-weight:500">Rs {x["ltp"]:,.2f}</span>'
+        f'<span style="display:flex;gap:18px;align-items:baseline"><span style="font-size:22px;color:#5B5F66;font-weight:500">Rs {group_np(x["ltp"], 2)}</span>'
         f'<span style="font-size:25px;font-weight:700;color:{col(x["pct"])};min-width:92px;text-align:right">{sign(x["pct"])}%</span></span></div>'
         for x in items)
 
@@ -109,14 +132,14 @@ body{{margin:0}} *{{box-sizing:border-box}}
 <div style="padding:24px 56px 0;display:flex;flex-direction:column;gap:16px">
 <div class="card" style="padding:26px 34px;display:flex;justify-content:space-between;align-items:center">
 <div><div class="lbl">NEPSE Index · Close</div>
-<div style="font-size:104px;font-weight:800;letter-spacing:-3px;line-height:1.05;margin-top:6px">{ix['close']:,.2f}</div></div>
+<div style="font-size:104px;font-weight:800;letter-spacing:-3px;line-height:1.05;margin-top:6px">{group_np(ix['close'], 2)}</div></div>
 <div style="background:{chip_bg};color:{c};border-radius:8px;padding:16px 22px;text-align:right">
 <div style="font-size:40px;font-weight:800;line-height:1.1">{arrow(ix['change'])} {abs(ix['change']):,.2f}</div>
 <div style="font-size:30px;font-weight:700;margin-top:4px">{sign(ix['pct'])}%</div></div></div>
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px">
-<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Turnover</div><div style="font-size:36px;font-weight:800;margin-top:6px">Rs {d['turnover']/1e9:,.2f} bn</div></div>
-<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Shares traded</div><div style="font-size:36px;font-weight:800;margin-top:6px">{d['shares']/1e6:,.2f} mn</div></div>
-<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Transactions</div><div style="font-size:36px;font-weight:800;margin-top:6px">{d['transactions']:,}</div></div></div>
+<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Turnover</div><div style="font-size:36px;font-weight:800;margin-top:6px">Rs {big_np(d['turnover'])}</div></div>
+<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Shares traded</div><div style="font-size:36px;font-weight:800;margin-top:6px">{big_np(d['shares'])}</div></div>
+<div class="card" style="padding:18px 22px"><div class="lbl" style="font-size:17px">Transactions</div><div style="font-size:36px;font-weight:800;margin-top:6px">{group_np(d['transactions'])}</div></div></div>
 <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px">
 <div class="card" style="padding:18px 24px 6px"><div class="lbl" style="color:{UP};margin-bottom:6px">▲ Top Gainers</div>{mover_rows(d['gainers'])}</div>
 <div class="card" style="padding:18px 24px 6px"><div class="lbl" style="color:{DOWN};margin-bottom:6px">▼ Top Losers</div>{mover_rows(d['losers'])}</div></div>
@@ -137,9 +160,9 @@ def caption(d, i):
     best = max(d["sectors"], key=lambda s: s["pct"]); worst = min(d["sectors"], key=lambda s: s["pct"])
     g = d["gainers"][0]; l = d["losers"][0]
     lines = [head, "", f"🗓️ {i['date_ne']}", "",
-             f"📊 NEPSE Index: {ix['close']:,.2f} ({sign(ix['change'])} | {sign(ix['pct'])}%)",
-             f"💰 Turnover: रु {d['turnover']/1e7:,.2f} करोड",
-             f"🔁 Shares traded: {d['shares']:,} | Transactions: {d['transactions']:,}", "",
+             f"📊 NEPSE Index: {group_np(ix['close'], 2)} ({sign(ix['change'])} | {sign(ix['pct'])}%)",
+             f"💰 कारोबार रकम: रु {big_np(d['turnover'], ne=True)}",
+             f"🔁 कित्ता: {big_np(d['shares'], ne=True)} | कारोबार संख्या: {group_np(d['transactions'])}", "",
              f"🟢 Top gainer: {g['symbol']} ({sign(g['pct'])}%)",
              f"🔴 Top loser: {l['symbol']} ({sign(l['pct'])}%)",
              f"🏆 Best sector: {best['name']} ({sign(best['pct'])}%)",
