@@ -95,8 +95,8 @@ def faces():
     return "\n".join(
         f"@font-face{{font-family:Inter;font-weight:{w};src:url('{(FONTS / f'inter-latin-{w}-normal.woff2').as_uri()}') format('woff2');}}"
         for w in (500, 600, 700, 800)) + "\n" + "\n".join(
-        f"@font-face{{font-family:Mukta;font-weight:800;src:url('{(MUKTA / f'mukta-{sub}-800-normal.woff2').as_uri()}') format('woff2');}}"
-        for sub in ("devanagari", "latin"))
+        f"@font-face{{font-family:Mukta;font-weight:{w};src:url('{(MUKTA / f'mukta-{sub}-{w}-normal.woff2').as_uri()}') format('woff2');}}"
+        for sub in ("devanagari", "latin") for w in (500, 800))
 
 
 def mover_rows(items):
@@ -151,7 +151,7 @@ body{{margin:0}} *{{box-sizing:border-box}}
 </div>
 <div style="margin-top:auto;background:{RED};color:#fff;padding:20px 56px;display:flex;justify-content:space-between;align-items:center">
 <div style="font-family:Mukta,sans-serif;font-size:32px;font-weight:800;line-height:1.2">छिटो खबर</div>
-<div style="font-size:19px;font-weight:500">Data: NEPSE via ShareSansar · Not investment advice</div></div>
+<div style="font-family:Mukta,sans-serif;font-size:26px;font-weight:500">दिनहुँ सेयर बजारको अपडेटका लागि फलो गर्नुहोला</div></div>
 </div></body></html>"""
 
 
