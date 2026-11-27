@@ -4,6 +4,7 @@
   "private": true,
   "description": "Daily rashifal image for the छिटो खबर Facebook page",
   "dependencies": {
+    "@fontsource/inter": "^5.3.0",
     "@fontsource/mukta": "^5.3.0"
   }
 }

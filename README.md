@@ -42,3 +42,12 @@ python3 daily.py build content/2026-11-26.json
 Rates come only from the Federation of Nepal Gold & Silver Dealers' Association (FENEGOSIDA),
 as reported by at least two Nepali news portals that agree. No rate is published on Saturdays.
 Fonts come from `rashifal/node_modules` (run `npm install` in `rashifal/`).
+
+# Daily NEPSE update (English poster)
+
+- `nepse/data/YYYY-MM-DD.json` — the day's closing figures (shape: see `nepse/data/2026-11-26.json`)
+- `nepse/nepse.py` — `info` (date, trading day?) and `build DAY` (validates the data, renders the poster and caption)
+- `nepse/images/`, `nepse/captions/` — the day's poster and caption
+
+NEPSE trades Sunday to Thursday, 11:00–15:00. Figures come from ShareSansar's market page and are
+cross-checked against Merolagani's top gainers/losers. Fonts: Inter from `rashifal/node_modules`.

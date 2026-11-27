@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-26",
+ "index": {"close": 2636.75, "change": -10.89, "pct": -0.41},
+ "turnover": 5489584101.95,
+ "shares": 14710298,
+ "transactions": 49806,
+ "gainers": [
+  {"symbol": "UNLB", "ltp": 1246.90, "pct": 4.88},
+  {"symbol": "LUK", "ltp": 9.73, "pct": 4.29},
+  {"symbol": "GMLI", "ltp": 854.90, "pct": 4.00},
+  {"symbol": "HATHY", "ltp": 418.00, "pct": 3.98},
+  {"symbol": "NICSF", "ltp": 9.23, "pct": 3.82}
+ ],
+ "losers": [
+  {"symbol": "LSH12", "ltp": 9.20, "pct": -4.76},
+  {"symbol": "ECL", "ltp": 1026.50, "pct": -4.60},
+  {"symbol": "SCB", "ltp": 665.00, "pct": -3.48},
+  {"symbol": "SAPIL", "ltp": 944.00, "pct": -3.48},
+  {"symbol": "JSLBB", "ltp": 850.00, "pct": -3.41}
+ ],
+ "sectors": [
+  {"name": "Banking", "close": 1605.03, "pct": -0.93},
+  {"name": "Development Bank", "close": 5524.78, "pct": -0.48},
+  {"name": "Finance", "close": 2127.93, "pct": -0.41},
+  {"name": "Hotels & Tourism", "close": 6923.69, "pct": -0.62},
+  {"name": "Hydropower", "close": 3631.52, "pct": -0.08},
+  {"name": "Investment", "close": 94.21, "pct": 0.72},
+  {"name": "Life Insurance", "close": 11564.92, "pct": -0.34},
+  {"name": "Manufacturing", "close": 10362.59, "pct": -0.17},
+  {"name": "Microfinance", "close": 4367.36, "pct": -0.15},
+  {"name": "Mutual Fund", "close": 19.95, "pct": -0.24},
+  {"name": "Non-Life Insurance", "close": 9201.22, "pct": -0.40},
+  {"name": "Others", "close": 1831.86, "pct": -0.13},
+  {"name": "Trading", "close": 3108.89, "pct": -1.52}
+ ],
+ "sources": ["https://www.sharesansar.com/market", "https://merolagani.com/LatestMarket.aspx"]
+}
