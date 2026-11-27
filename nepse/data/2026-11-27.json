@@ -1,0 +1,37 @@
+{
+ "date": "2026-11-27",
+ "index": {"close": 2628.17, "change": -8.57, "pct": -0.32},
+ "turnover": 4824732213.82,
+ "shares": 13198757,
+ "transactions": 42821,
+ "gainers": [
+  {"symbol": "NICA", "ltp": 265.20, "pct": 6.08},
+  {"symbol": "MANDU", "ltp": 880.00, "pct": 4.76},
+  {"symbol": "BFC", "ltp": 482.90, "pct": 4.30},
+  {"symbol": "ULBSL", "ltp": 2521.00, "pct": 3.13},
+  {"symbol": "MMKJL", "ltp": 393.70, "pct": 3.06}
+ ],
+ "losers": [
+  {"symbol": "SOPL", "ltp": 555.50, "pct": -5.37},
+  {"symbol": "SIGS2", "ltp": 9.19, "pct": -5.26},
+  {"symbol": "NICSF", "ltp": 8.80, "pct": -4.66},
+  {"symbol": "UNLB", "ltp": 1189.00, "pct": -4.64},
+  {"symbol": "BENH", "ltp": 785.00, "pct": -4.27}
+ ],
+ "sectors": [
+  {"name": "Banking", "close": 1606.25, "pct": 0.07},
+  {"name": "Development Bank", "close": 5482.77, "pct": -0.76},
+  {"name": "Finance", "close": 2127.05, "pct": -0.04},
+  {"name": "Hotels & Tourism", "close": 6911.61, "pct": -0.17},
+  {"name": "Hydropower", "close": 3604.47, "pct": -0.74},
+  {"name": "Investment", "close": 93.82, "pct": -0.41},
+  {"name": "Life Insurance", "close": 11530.20, "pct": -0.30},
+  {"name": "Manufacturing", "close": 10295.15, "pct": -0.65},
+  {"name": "Microfinance", "close": 4344.53, "pct": -0.52},
+  {"name": "Mutual Fund", "close": 19.87, "pct": -0.43},
+  {"name": "Non-Life Insurance", "close": 9229.09, "pct": 0.30},
+  {"name": "Others", "close": 1823.70, "pct": -0.44},
+  {"name": "Trading", "close": 3103.37, "pct": -0.17}
+ ],
+ "sources": ["https://www.sharesansar.com/market", "https://merolagani.com/LatestMarket.aspx", "https://arthasarokar.com/2026/11/on-friday-the-nepse-index-dropped-by-8-57-points-with-the-market-at-2628-17-points.html"]
+}
