@@ -17,6 +17,7 @@ from playwright.sync_api import sync_playwright
 
 HERE = pathlib.Path(__file__).resolve().parent
 FONTS = HERE.parent / "rashifal/node_modules/@fontsource/inter/files"
+MUKTA = HERE.parent / "rashifal/node_modules/@fontsource/mukta/files"
 NPT = datetime.timezone(datetime.timedelta(hours=5, minutes=45))
 BS_MONTHS = ["Baisakh", "Jestha", "Asar", "Shrawan", "Bhadra", "Asoj", "Kartik",
              "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"]
@@ -93,7 +94,9 @@ def arrow(v): return "▲" if v > 0 else ("▼" if v < 0 else "■")
 def faces():
     return "\n".join(
         f"@font-face{{font-family:Inter;font-weight:{w};src:url('{(FONTS / f'inter-latin-{w}-normal.woff2').as_uri()}') format('woff2');}}"
-        for w in (500, 600, 700, 800))
+        for w in (500, 600, 700, 800)) + "\n" + "\n".join(
+        f"@font-face{{font-family:Mukta;font-weight:800;src:url('{(MUKTA / f'mukta-{sub}-800-normal.woff2').as_uri()}') format('woff2');}}"
+        for sub in ("devanagari", "latin"))
 
 
 def mover_rows(items):
@@ -124,7 +127,7 @@ body{{margin:0}} *{{box-sizing:border-box}}
 </style></head><body><div id="root">
 <div style="height:12px;background:{RED}"></div><div style="height:4px;background:{BLUE}"></div>
 <div style="padding:36px 56px 0;display:flex;justify-content:space-between;align-items:flex-end">
-<div><div style="font-size:22px;font-weight:800;color:{RED};letter-spacing:3px">CHITO KHABAR</div>
+<div><div style="font-family:Mukta,sans-serif;font-size:30px;font-weight:800;color:{RED};line-height:1.2">छिटो खबर</div>
 <div style="font-size:66px;font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-top:6px">NEPSE Daily Update</div></div>
 <div style="text-align:right;padding-bottom:6px"><div style="font-size:24px;font-weight:700">{i['date_en']}</div>
 <div style="font-size:22px;font-weight:500;color:#5B5F66;margin-top:2px">{i['date_bs']}</div></div></div>
@@ -147,7 +150,7 @@ body{{margin:0}} *{{box-sizing:border-box}}
 <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px">{sectors}</div></div>
 </div>
 <div style="margin-top:auto;background:{RED};color:#fff;padding:20px 56px;display:flex;justify-content:space-between;align-items:center">
-<div style="font-size:26px;font-weight:800;letter-spacing:2px">CHITO KHABAR</div>
+<div style="font-family:Mukta,sans-serif;font-size:32px;font-weight:800;line-height:1.2">छिटो खबर</div>
 <div style="font-size:19px;font-weight:500">Data: NEPSE via ShareSansar · Not investment advice</div></div>
 </div></body></html>"""
 
